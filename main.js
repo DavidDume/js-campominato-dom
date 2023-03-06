@@ -50,6 +50,7 @@ function gameMode(mode) {
             
             if(this.classList.contains('bomb')) {
                 this.classList.add('bomb-clicked');
+                //se gioco perso ricarica la pagina
                 location.reload();
             } else {
                 //mostra il numero solo se box non è ancora attiva

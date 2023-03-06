@@ -45,10 +45,6 @@ body {
     border: 1px solid black;
 }
 
-.bomb {
-    background-color: red;
-}
-
 .bomb-clicked {
     background-color: red;
 }
