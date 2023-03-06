@@ -64,3 +64,12 @@ body {
 select, button {
     padding: 5px;
 }
+
+#perso {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}

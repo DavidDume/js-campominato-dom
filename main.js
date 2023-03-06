@@ -4,6 +4,8 @@ const selectDom = document.querySelector('#select');
 
 const playBtn = document.querySelector('#play');
 
+const persoDom = document.querySelector('#perso');
+const vintoDom = document.querySelector('#vinto');
 const punteggio = document.querySelector('#punteggio');
 
 //crea la grid appena il programma si carica
@@ -16,7 +18,12 @@ playBtn.addEventListener('click', function() {
 function gameMode(mode) {
     // resetto il grid ogni volta che cambio modalita di gioco
     gridDom.innerHTML = "";
+    punteggio.innerHTML = 0;
+    persoDom.classList.add('hidden');
+    vintoDom.classList.add('hidden');
 
+    let gameOn = true;
+    
     let bombs = addBombs();
 
     let classText;
@@ -47,23 +54,26 @@ function gameMode(mode) {
         }
         
         box.addEventListener('click', function() {
-            
-            if(this.classList.contains('bomb')) {
-                this.classList.add('bomb-clicked');
-                //se gioco perso ricarica la pagina
-                location.reload();
-            } else {
-                //mostra il numero solo se box non è ancora attiva
-                if(!this.classList.contains('clicked')) {
-                    console.log(i);
-                    counter++;
+            if(gameOn) {
+                if(this.classList.contains('bomb')) {
+                    this.classList.add('bomb-clicked');
+                    //se gioco perso ricarica la pagina
+                    gameOn = false;
+                    persoDom.classList.remove('hidden');
+                } else {
+                    //mostra il numero solo se box non è ancora attiva
+                    if(!this.classList.contains('clicked')) {
+                        console.log(i);
+                        counter++;
+                    }
+                    this.classList.toggle('clicked');
                 }
-                this.classList.toggle('clicked');
-            }
-            punteggio.innerHTML = counter;
-            
-            if(counter == (mode - 16)) {
-                location.reload();
+                punteggio.innerHTML = counter;
+                
+                if(counter == (mode - 16)) {
+                    gameOn = false;
+                    vintoDom.classList.remove('hidden');
+                }
             }
             
         })
