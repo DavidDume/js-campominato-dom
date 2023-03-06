@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    text-align: center;
+    color: #588157;
+}
+
+.playmode {
+    margin: 20px auto;
+}
+
+.grid {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: 600px;
+    width: 600px;
+}
+
+/* CLASSI PER LE DIVERSE MODALITA DI GIOCO */
+.facile {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.intermedio {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.difficile {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+.box {
+    border: 1px solid black;
+}
+
+.box:hover {
+    cursor: pointer;
+}
+
+.clicked {
+    background-color: #344e41;
+}
+
+select, button {
+    padding: 5px;
+}
