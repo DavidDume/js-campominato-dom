@@ -13,7 +13,9 @@ playBtn.addEventListener('click', function() {
 
 function gameMode(mode) {
     // resetto il grid ogni volta che cambio modalita di gioco
-    gridDom.innerHTML = ""
+    gridDom.innerHTML = "";
+
+    let bombs = addBombs();
 
     let classText;
 
@@ -25,10 +27,22 @@ function gameMode(mode) {
         classText = "difficile";
     }
 
+
     for(let i = 1; i <= mode; i++) {
+
+       
+
         let box = document.createElement('div');
         box.classList.add(classText);
         box.classList.add('box');
+
+        //aggiungio le caselle con le bombe
+        for(b = 0; b < bombs.length; b++) {
+            if(i == bombs[b]) {
+                box.classList.add('bomb');
+            }
+        }
+        
         box.addEventListener('click', function() {
     
             //mostra il numero solo se box non è ancora attiva
@@ -60,7 +74,10 @@ function addBombs() {
     while(hasDuplicate(bombe)) {
         bombe = createBombs(parseInt(selectDom.value)); 
     } 
-    return bombe;
+    //metto l'array in ordine crescente
+    return bombe.sort(function(a, b) {
+        return a - b;
+    });
 } 
 
 // controlla se ci sono dei numeri che si ripetono in un array
@@ -81,5 +98,3 @@ function hasDuplicate(arr) {
     }
     return false;
 }
-
-console.log(addBombs());
