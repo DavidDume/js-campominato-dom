@@ -42,3 +42,44 @@ function gameMode(mode) {
     
     }
 }
+
+// crea l'array con le caselle per le bombe
+function createBombs(cells) {
+    let caselleBombe = [];
+    for(let i = 1; i <= 16; i++) {
+        caselleBombe.push(Math.floor(Math.random() * (cells - 1) + 1));
+    }
+
+    return caselleBombe;
+}
+
+
+function addBombs() {
+    let bombe = createBombs(parseInt(selectDom.value));
+    //se esistiono duplicati rifai l'array delle bombe finche non ce un'array senza duplicati
+    while(hasDuplicate(bombe)) {
+        bombe = createBombs(parseInt(selectDom.value)); 
+    } 
+    return bombe;
+} 
+
+// controlla se ci sono dei numeri che si ripetono in un array
+function hasDuplicate(arr) {
+    for(let i = 0; i < arr.length; i++) {
+
+        for(let k = 0; k < arr.length; k++) {
+
+            //evito che si compari con se stesso
+            if(i !== k) {
+
+                if(arr[i] == arr[k]) {
+                    return true;
+                } 
+
+            }
+        }
+    }
+    return false;
+}
+
+console.log(addBombs());
