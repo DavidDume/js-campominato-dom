@@ -4,6 +4,8 @@ const selectDom = document.querySelector('#select');
 
 const playBtn = document.querySelector('#play');
 
+const punteggio = document.querySelector('#punteggio');
+
 //crea la grid appena il programma si carica
 gameMode(parseInt(selectDom.value));
 
@@ -18,6 +20,7 @@ function gameMode(mode) {
     let bombs = addBombs();
 
     let classText;
+    let counter = 0;
 
     if(mode == 100) {
         classText = "facile";
@@ -44,12 +47,23 @@ function gameMode(mode) {
         }
         
         box.addEventListener('click', function() {
-    
-            //mostra il numero solo se box non è ancora attiva
-            if(!this.classList.contains('clicked')) {
-                console.log(i);
+            
+            if(this.classList.contains('bomb')) {
+                this.classList.add('bomb-clicked');
+                location.reload();
+            } else {
+                //mostra il numero solo se box non è ancora attiva
+                if(!this.classList.contains('clicked')) {
+                    console.log(i);
+                    counter++;
+                }
+                this.classList.toggle('clicked');
             }
-            this.classList.toggle('clicked');
+            punteggio.innerHTML = counter;
+            
+            if(counter == (mode - 16)) {
+                location.reload();
+            }
             
         })
         gridDom.append(box);

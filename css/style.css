@@ -49,6 +49,14 @@ body {
     background-color: red;
 }
 
+.bomb-clicked {
+    background-color: red;
+}
+
+#punteggio {
+    margin: 20px 0;
+}
+
 .box:hover {
     cursor: pointer;
 }
