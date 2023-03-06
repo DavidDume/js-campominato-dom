@@ -57,7 +57,6 @@ function gameMode(mode) {
             if(gameOn) {
                 if(this.classList.contains('bomb')) {
                     this.classList.add('bomb-clicked');
-                    //se gioco perso ricarica la pagina
                     gameOn = false;
                     persoDom.classList.remove('hidden');
                 } else {
@@ -66,7 +65,7 @@ function gameMode(mode) {
                         console.log(i);
                         counter++;
                     }
-                    this.classList.toggle('clicked');
+                    this.classList.add('clicked');
                 }
                 punteggio.innerHTML = counter;
                 
